@@ -150,11 +150,6 @@ export default defineComponent({
       }
     }
 
-    function closeApp () {
-
-      this.close()
-
-    }
     return{
       proAux,
       icoAux,
