@@ -55,7 +55,7 @@
 
     <div id="divTable" class="row q-mt-md">
       <q-table
-        class="col my-sticky-header-table"
+        class="col fixed-header"
         title="Clients"
         :rows="clientList"
         :columns="columns"
@@ -153,3 +153,26 @@ export default defineComponent({
   },
 })
 </script>
+
+<style lang="sass">
+  .fixed-header
+
+    height: 700px
+
+    .q-table__top,
+    .q-table__bottom,
+    thead tr:first-child th
+
+      background-color: white
+
+    thead tr th
+      position: sticky
+      z-index: 1
+    thead tr:first-child th
+      top: 0
+
+
+    &.q-table--loading thead tr:last-child th
+
+      top: 48px
+</style>

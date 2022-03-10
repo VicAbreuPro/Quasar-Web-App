@@ -51,16 +51,16 @@
         </div>
       </div>
     </q-form>
-
     <div class="row q-mt-md">
       <q-table
+
         dense
         title="Products"
         :rows="productList"
         :columns="columns"
         :rows-per-page-options="[50, 75, 100, 150, 200]"
         row-key="id"
-        class="col"
+        class="col fixed-header"
       />
     </div>
   </q-page>
@@ -164,3 +164,26 @@ export default defineComponent({
   }
 });
 </script>
+
+<style lang="sass">
+  .fixed-header
+
+    height: 700px
+
+    .q-table__top,
+    .q-table__bottom,
+    thead tr:first-child th
+
+      background-color: white
+
+    thead tr th
+      position: sticky
+      z-index: 1
+    thead tr:first-child th
+      top: 0
+
+
+    &.q-table--loading thead tr:last-child th
+
+      top: 48px
+</style>

@@ -3,6 +3,7 @@
       <div class="row">
         <q-btn color="primary" label="Add New Sale" @click="changeAux(1)"></q-btn>
         <q-btn class="q-ml-sm" style="background: #09b85d; color: white" label="UPDATE SALE" @click="updateSale()" />
+        <q-toggle class="q-ml-md" v-model="toggle" label="Show Sale state"></q-toggle>
       </div>
       <q-form @submit.prevent="addSale()">
         <div name="addDIV" className="row q-mt-sm" v-if="aux">
@@ -70,6 +71,7 @@
         </div>
       </q-form>
       <div class="q-mt-md">
+
         <q-table
           dense
           title="Sales"
@@ -77,9 +79,9 @@
           :columns="columns"
           :rows-per-page-options="[50, 75, 100, 150, 200]"
           row-key="id"
-          class="col">
+          class="col fixed-header">
 
-          <template v-slot:body="props" >
+          <template v-if="toggle != false" v-slot:body="props" >
             <q-tr :props="props" :class="props.row.valor<5000?'lowstate':'text-black' && props.row.valor>8000?'highstate':'text-black'">
               <q-td key="sale_id" :props="props" >
                 {{props.row.sale_id}}
@@ -184,6 +186,7 @@ export default defineComponent({
     })
 
     return{
+      toggle: ref(false),
       aux,
       saleForm,
       saleList,
@@ -201,4 +204,27 @@ export default defineComponent({
   }
 })
 </script>
+
+<style lang="sass">
+  .fixed-header
+
+    height: 700px
+
+    .q-table__top,
+    .q-table__bottom,
+    thead tr:first-child th
+
+      background-color: white
+
+    thead tr th
+      position: sticky
+      z-index: 1
+    thead tr:first-child th
+      top: 0
+
+
+    &.q-table--loading thead tr:last-child th
+
+      top: 48px
+</style>
 
