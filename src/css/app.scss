@@ -1,8 +1,8 @@
 // app global css in SCSS form
-$lowstate: rgb(248, 48, 48);
-
+$lowstate-color: rgb(250, 81, 81);
+$highstate-color:rgb(69, 206, 105);
 .lowstate{
-  background-color: $lowstate;
+  background-color: $lowstate-color;
 }
 
 .normalstate{
@@ -10,5 +10,5 @@ $lowstate: rgb(248, 48, 48);
 }
 
 .highstate{
-  background-color: green;
+  background-color: $highstate-color;
 }

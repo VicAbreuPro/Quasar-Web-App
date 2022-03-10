@@ -80,7 +80,7 @@
           class="col">
 
           <template v-slot:body="props" >
-            <q-tr :props="props" :class="props.row.valor>5000?'lowstate':'text-black'">
+            <q-tr :props="props" :class="props.row.valor<5000?'lowstate':'text-black' && props.row.valor>8000?'highstate':'text-black'">
               <q-td key="sale_id" :props="props" >
                 {{props.row.sale_id}}
               </q-td>
@@ -103,10 +103,7 @@
             </q-tr>
           </template>
         </q-table>
-
-
       </div>
-      <p class="lowstate">Teste </p>
   </q-page>
 </template>
 
