@@ -1,6 +1,6 @@
 <template>
   <q-page padding>
-    <q-form class = "row justify-center" @submit="changePass">
+    <q-form class = "row justify-center" @submit="changePass()">
       <p class ="col-12 text-h4 text-center q-mt-xl"> Change Password Page</p>
 
       <div class="fixed-center">
@@ -9,7 +9,7 @@
             <q-icon class="q-mr-lg q-mt-lg" name="key"></q-icon>
             <q-input
               v-model="newPassword"
-              type="text"
+              type="password"
               label="New Password"
               lazy-rules
               :rule="nameRules"></q-input>
@@ -53,11 +53,16 @@ export default defineComponent({
     const newPassword = ref('')
 
     const changePass = async () =>{
-      await resetPassword(token, newPassword.value)
 
-      notifySuccess('Password Changed!')
-      
-      router.replace({name: 'loginPg'})
+      if(newPassword.value.length >= 6){
+
+        await resetPassword(token, newPassword.value)
+        notifySuccess('Password Changed!')
+
+        router.replace({name: 'loginPg'})
+      }else{
+        notifyError('Password needs to contain at least 6 characters')
+      }
     }
 
     return{

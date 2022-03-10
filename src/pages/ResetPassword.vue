@@ -1,6 +1,6 @@
 <template>
   <q-page padding>
-    <q-form class = "row justify-center" @submit.prevent="newPassword">
+    <q-form class = "row justify-center" @submit.prevent="newPassword()">
       <p class ="col-12 text-h4 text-center q-mt-xl"> Reset Password Page</p>
 
       <div class="fixed-center">

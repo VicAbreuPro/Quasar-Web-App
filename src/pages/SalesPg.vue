@@ -109,7 +109,7 @@ export default defineComponent({
 
   setup(){
 
-    const {addWindow} = popUpWindow()
+    const {mediumWindow} = popUpWindow()
     const {notifyError, notifySuccess} = useNotify()
     const {getSales, postSale} = useApi()
     const saleList = ref([])
@@ -145,7 +145,7 @@ export default defineComponent({
     }
 
     const updateSale = () =>{
-      addWindow('/UpSale')
+      mediumWindow('/UpSale')
     }
 
     const changeAux = (validation) =>{

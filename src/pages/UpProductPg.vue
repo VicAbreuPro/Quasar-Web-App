@@ -102,7 +102,7 @@ export default defineComponent({
 
     const checkId = async () => {
 
-      var notAux = true;
+      var notAux = false;
 
       try {
         listAux.value = await getProducts()
@@ -117,6 +117,7 @@ export default defineComponent({
             icoAux.value.checkInfo = true
             icoAux.value.infoIco = false
             icoAux.value.checkIco = true
+            notAux = true
           }
         });
 
