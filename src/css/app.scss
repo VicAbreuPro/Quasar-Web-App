@@ -1,1 +1,14 @@
 // app global css in SCSS form
+$lowstate: rgb(248, 48, 48);
+
+.lowstate{
+  background-color: $lowstate;
+}
+
+.normalstate{
+  background-color: blue;
+}
+
+.highstate{
+  background-color: green;
+}

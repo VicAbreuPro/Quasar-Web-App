@@ -77,9 +77,36 @@
           :columns="columns"
           :rows-per-page-options="[50, 75, 100, 150, 200]"
           row-key="id"
-          class="col"
-        />
+          class="col">
+
+          <template v-slot:body="props" >
+            <q-tr :props="props" :class="props.row.valor>5000?'lowstate':'text-black'">
+              <q-td key="sale_id" :props="props" >
+                {{props.row.sale_id}}
+              </q-td>
+              <q-td key="product_model" :props="props" >
+                {{props.row.model}}
+              </q-td>
+              <q-td key="product_serial" :props="props" >
+                {{props.row.serial}}
+              </q-td>
+              <q-td key="client_id" :props="props" >
+                {{props.row.client_id}}
+              </q-td>
+              <q-td key="value_s" :props="props" >
+                {{props.row.valor}}
+              </q-td>
+              <q-td key="sale_date" :props="props" :class="props.row.valor>5000?'bluestate':'text-black'" >
+                {{props.row.date}}
+              </q-td>
+
+            </q-tr>
+          </template>
+        </q-table>
+
+
       </div>
+      <p class="lowstate">Teste </p>
   </q-page>
 </template>
 
@@ -100,7 +127,7 @@ const columns = [
   { name: 'product_model', align: 'center', label: 'Model', field: 'model', sortable: true },
   { name: 'product_serial', align: 'center', label: 'Serial Number', field: 'serial', sortable: true },
   { name: 'client_id', align: 'center', label: 'Client ID', field: 'client_id', sortable: true },
-  { name: 'value',  align: 'center', label: 'Value €', field: 'valor', sortable: true },
+  { name: 'value_s',  align: 'center', label: 'Value €', field: 'valor', sortable: true },
   { name: 'sale_date', align: 'center', label: 'Sale Date', field: 'date', sortable: true },
 ]
 
@@ -126,8 +153,9 @@ export default defineComponent({
 
     const mapSales = async () =>{
       try {
-        console.log(saleForm.value)
+
         saleList.value = await getSales()
+        console.log(saleList.value[0].valor)
         if(saleList.value != null) notifySuccess("Sales Loaded!")
       } catch (error) {
         notifyError("Error in load data!")
@@ -153,6 +181,7 @@ export default defineComponent({
       else aux.value = false
     }
 
+
     onMounted(() =>{
       mapSales()
     })
@@ -175,3 +204,4 @@ export default defineComponent({
   }
 })
 </script>
+
