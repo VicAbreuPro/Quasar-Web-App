@@ -1,12 +1,22 @@
 <template>
   <q-page padding>
-    <q-form class = "row justify-center" @submit.prevent="newUser">
+    <q-form class = "row justify-center" @submit.prevent="newUser()">
       <p class ="col-12 text-h4 text-center q-mt-xl"> Register Page</p>
 
-      <div class="fixed-center">
-        <div class="col justify-center">
+      <div class="q-mt-md fixed-center">
+        <div class="col q-mt-xl">
+          <div class="row q-mt-xl">
+            <q-icon class="q-mr-lg q-mt-lg" size="30px" name="token"></q-icon>
+            <q-input
+              v-model="token"
+              type="text"
+              label="Acces Token"
+              lazy-rules
+              :rules="nameRules"></q-input>
+          </div>
+
           <div class="row">
-            <q-icon class="q-mr-lg q-mt-lg" name="person"></q-icon>
+            <q-icon class="q-mr-lg q-mt-lg"  size="30px" name="person"></q-icon>
             <q-input
               v-model="form.username"
               type="text"
@@ -16,7 +26,7 @@
           </div>
 
           <div class="row">
-            <q-icon class="q-mr-lg q-mt-lg" name="email"></q-icon>
+            <q-icon class="q-mr-lg q-mt-lg" size="30px" name="email"></q-icon>
             <q-input
               v-model="form.email"
               type="email"
@@ -25,11 +35,10 @@
               :rules="nameRules"></q-input>
           </div>
 
-          <div class="row">
-            <q-icon class="q-ml-md q-mt-lg" name="locker"></q-icon>
+          <div class="row q-ml-sm">
+            <q-icon class="q-ml-lg q-mt-lg" size="30px" name="locker"></q-icon>
             <q-input
               v-model="form.password"
-              class="q-ml-sm"
               type="password"
               label="Password"
               lazy-rules
@@ -51,40 +60,51 @@ import useAuthUser from "src/composables/UseAuthUser";
 
 //For redirecting after registration
 import {useRouter} from 'vue-router';
+import useApi from "src/composables/UseApi";
 
 export default {
   name: "RegisterPg",
 
   setup(){
     const{notifyError, notifySuccess} = useNotify()
+    const{verifyUser} = useApi()
     const{register} = useAuthUser()
     const router = useRouter()
+    const token = ref('')
+    const aux = ref('')
 
     // Reactive form for login inputs
     const form = ref({
+        token_type: '',
         username: '',
         email: '',
         password: ''
     })
 
     const newUser = async () =>{
-      try {
-        // Call login method in composable passing our login const parameters
-        await register(form.value)
 
-        notifySuccess("Registration Done!")
+      // Call login method in composable passing our login const parameters
+      aux.value = await verifyUser(token.value)
 
-        router.push({
-          name: 'emailConfimation',
-          query: {email: form.value.email}
-        })
+      if(aux.value != 200){
+        try {
+          console.log("teste")
+          form.value.token_type = aux
+          await register(form.value)
+          notifySuccess("Registration Done!")
 
-      } catch (error) {
-        notifyError(error.message)
-      }
+          router.push({
+            name: 'emailConfimation',
+            query: {email: form.value.email}
+          })
+        } catch (error) {
+          notifyError(error)
+        }
+      }else notifyError("Invalid Token")
     }
 
     return{
+      token,
       form,
       newUser,
       nameRules: [

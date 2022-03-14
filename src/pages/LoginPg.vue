@@ -77,8 +77,11 @@ export default({
 
     const newLogin = async () =>{
       try {
+        const user = useAuthUser()
+
         // Call login method in composable passing our login const parameters
         await login(form.value)
+
 
         // Success Notification
         notifySuccess('Loggin Success!')

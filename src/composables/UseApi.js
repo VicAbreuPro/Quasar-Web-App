@@ -43,6 +43,15 @@ export default function useApi(){
     }
   }
 
+  const topCliLocation = async() =>{
+    try {
+      const response = await axios.get(process.env.API_VNA_TCLI)
+      return response.data
+    } catch (error) {
+      return response.status
+    }
+  }
+
   const getProducts = async () =>{
     try {
       const response = await axios.get(process.env.API_VNA_GPRO)
@@ -79,6 +88,15 @@ export default function useApi(){
       return response.status
     }catch (error) {
       console.log(error)
+    }
+  }
+
+  const topProduct = async () =>{
+    try {
+      const response = await axios.get(process.env.API_VNA_TPRO)
+      return response.data
+    } catch (error) {
+      return response.status
     }
   }
 
@@ -127,15 +145,27 @@ export default function useApi(){
     }
   }
 
+  const verifyUser = async (token_inp) => {
+    try {
+      const response = await axios.get(process.env.API_VNA_VTKN + token_inp)
+      return response.data
+    } catch (error) {
+      return response.status
+    }
+  }
+
   return {
     getClientList,
     postClient,
     upClient,
+    topCliLocation,
     getProducts,
     postProduct,
     upProduct,
+    topProduct,
     getSales,
     postSale,
-    upSale
+    upSale,
+    verifyUser
   }
 }

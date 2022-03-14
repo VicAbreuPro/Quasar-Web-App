@@ -147,21 +147,6 @@ export default defineComponent({
       changeAux
     }
   },
-
-
-
-  methods:{
-    getProducts(){
-      this.$axios.get('https://apivna20.azurewebsites.net/Product/ProductList')
-      .then((res) =>{
-        console.log(res)
-        this.productList = res.data
-      })
-      .catch((err) =>{
-        console.log(err)
-      })
-    }
-  }
 });
 </script>
 
