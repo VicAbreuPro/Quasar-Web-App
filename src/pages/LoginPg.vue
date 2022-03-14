@@ -1,7 +1,7 @@
 <template>
   <q-page padding>
     <q-form class = "row justify-center" @submit.prevent="newLogin">
-      <p class ="col-12 text-h4 text-center q-mt-xl"> Login Page</p>
+      <p class ="col-12 text-h4 text-center q-mt-xl"> Login Page 2</p>
 
       <div class="fixed-center">
         <div class="col justify-center">
