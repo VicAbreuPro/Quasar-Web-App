@@ -69,8 +69,8 @@
         class="my-card text-white q-ml-xl"
         style="background: radial-gradient(circle, #35a2ff 0%, #014a88 100%)">
         <q-card-section>
-          <div class="text-h6">Our Changing Planet</div>
-          <div class="text-subtitle2">by John Doe</div>
+          <div class="text-h6">Total Sales:</div>
+          <div class="text-subtitle2">Top Sale:</div>
         </q-card-section>
 
         <q-card-section class="q-pt-none">
@@ -82,8 +82,8 @@
         class="my-card text-white q-ml-md"
         style="background: radial-gradient(circle, #35a2ff 0%, #014a88 100%)">
         <q-card-section>
-          <div class="text-h6">Our Changing Planet</div>
-          <div class="text-subtitle2">by John Doe</div>
+          <div class="text-h6">Sales Amount:</div>
+          <div class="text-subtitle2"></div>
         </q-card-section>
 
         <q-card-section class="q-pt-none">

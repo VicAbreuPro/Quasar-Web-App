@@ -3,36 +3,39 @@
     <q-form class = "row justify-center" @submit.prevent="newLogin">
       <p class ="col-12 text-h4 text-center q-mt-xl"> Login Page</p>
 
-      <div class="fixed-center">
-        <div class="col justify-center">
-          <div class="row">
-            <q-icon class="q-mr-lg q-mt-lg" name="person"></q-icon>
-            <q-input
-              v-model="form.email"
-              type="email"
-              label="Email"
-              lazy-rules
-              :rules="nameRules">
-              </q-input>
-          </div>
+      <div class="q-mt-xl">
+        <div class="flex-center q-mt-xl">
+          <div class="col justify-center">
+            <div class="row">
+              <q-icon class="q-mr-lg q-mt-lg" name="person"></q-icon>
+              <q-input
+                v-model="form.email"
+                type="email"
+                label="Email"
+                lazy-rules
+                :rules="nameRules">
+                </q-input>
+            </div>
 
-          <div class="row">
-            <q-icon class="q-ml-md q-mt-lg" name="locker"></q-icon>
-            <q-input
-              v-model="form.password"
-              class="q-ml-sm"
-              type="password"
-              label="Password"
-              lazy-rules
-              :rules="nameRules"></q-input>
+            <div class="row">
+              <q-icon class="q-ml-md q-mt-lg" name="locker"></q-icon>
+              <q-input
+                v-model="form.password"
+                class="q-ml-sm"
+                type="password"
+                label="Password"
+                lazy-rules
+                :rules="nameRules"></q-input>
+            </div>
+            <q-btn class="full-width q-mt-lg" label="LOGIN" color="primary" type="submit"></q-btn>
+            <q-btn class="full-width q-mt-md" label="REGISTER" color="primary" to="registerPg" ></q-btn>
           </div>
-          <q-btn class="full-width q-mt-lg" label="LOGIN" color="primary" type="submit"></q-btn>
-          <q-btn class="full-width q-mt-md" label="REGISTER" color="primary" to="registerPg" ></q-btn>
-        </div>
-        <div>
-          <q-btn  class="full-width q-mt-sm" flat color="primary" label="Forgot My Password" to="resetPass" />
+          <div>
+            <q-btn  class="full-width q-mt-sm" flat color="primary" label="Forgot My Password" to="resetPass" />
+          </div>
         </div>
       </div>
+
     </q-form>
   </q-page>
 </template>
