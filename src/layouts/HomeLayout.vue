@@ -58,25 +58,25 @@ const linksList = [
   {
     title: "Home Page",
     icon: "house",
-    link: "HomePg",
+    link: "https://vnamanager.netlify.app/HomePg",
   },
   {
     title: "Clients",
     caption: "Client Management",
     icon: "person",
-    link: "ClientPg",
+    link: "https://vnamanager.netlify.app/ClientPg",
   },
   {
     title: "Products",
     caption: "Product Management",
     icon: "star",
-    link: "ProductPg",
+    link: "https://vnamanager.netlify.app/ProductPg",
   },
   {
     title: "Sales",
     caption: "Sales Management",
     icon: "money",
-    link: "SalesPg",
+    link: "https://vnamanager.netlify.app/SalesPg",
   },
   {
     title: "Admin",
