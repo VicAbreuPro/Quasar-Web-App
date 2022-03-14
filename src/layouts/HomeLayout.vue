@@ -58,25 +58,25 @@ const linksList = [
   {
     title: "Home Page",
     icon: "house",
-    link: "http://localhost:8080/HomePg",
+    link: "HomePg",
   },
   {
     title: "Clients",
     caption: "Client Management",
     icon: "person",
-    link: "http://localhost:8080/ClientPg",
+    link: "ClientPg",
   },
   {
     title: "Products",
     caption: "Product Management",
     icon: "star",
-    link: "http://localhost:8080/ProductPg",
+    link: "ProductPg",
   },
   {
     title: "Sales",
     caption: "Sales Management",
     icon: "money",
-    link: "http://localhost:8080/SalesPg",
+    link: "SalesPg",
   },
   {
     title: "Admin",
