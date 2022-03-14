@@ -98,7 +98,6 @@ export default({
 
 
     return{
-      user,
       form,
       newLogin,
       nameRules: [
