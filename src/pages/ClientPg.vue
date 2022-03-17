@@ -104,7 +104,6 @@ export default defineComponent({
         cli_location: '',
         cli_date: ''
     })
-
     const mapClients = async () =>{
       try {
         clientList.value = await getClientList()
@@ -113,7 +112,6 @@ export default defineComponent({
         notifyError("Error in load data!")
       }
     }
-
     const addClient = async () =>{
       try {
         await postClient(cliForm.value.cli_name, cliForm.value.cli_location, cliForm.value.cli_date)
@@ -122,22 +120,18 @@ export default defineComponent({
         console.log(error)
       }
     }
-
     const updateClient = () =>{
 
       addWindow('/UpClient')
     }
-
     const changeAux = (validation) =>{
       if(validation != 0) aux.value = true
       else aux.value = false
     }
-
     // When view is mounted, call methods below
     onMounted(() =>{
       mapClients()
     })
-
     return{
       aux,
       cliForm,

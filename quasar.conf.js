@@ -58,6 +58,9 @@ module.exports = configure(function (ctx) {
         API_VNA_GSAL:'https://apivna20.azurewebsites.net/Sales/SalesList',
         API_VNA_PSAL:'https://apivna20.azurewebsites.net/Sales/AddSale',
         API_VNA_USAL:'https://apivna20.azurewebsites.net/Sales/UpdateSale',
+        API_VNA_TSAL:'https://apivna20.azurewebsites.net/Sales/TopSaleProduct',
+        API_VNA_YSAL:'https://apivna20.azurewebsites.net/Sales/YearAmount',
+        API_EXC_COIN: 'https://api.exchangerate.host/latest'
       },
       // transpile: false,
       // publicPath: '/',

@@ -1,6 +1,11 @@
 // app global css in SCSS form
 $lowstate-color: rgb(250, 81, 81);
 $highstate-color:rgb(69, 206, 105);
+$currency-color: rgb(120, 216, 17);
+
+.currency{
+  color: $currency-color;
+}
 .lowstate{
   background-color: $lowstate-color;
 }
@@ -13,5 +18,16 @@ $highstate-color:rgb(69, 206, 105);
   background-color: $highstate-color;
 }
 
+.home-card{
+  width: 300px;
+  height: 120px;
+}
+
+.home-card-right{
+  position: fixed;
+  right: 50px;
+  width: 200px;
+  height: 120px;
+}
 
 

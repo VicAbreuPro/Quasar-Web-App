@@ -137,12 +137,30 @@ export default function useApi(){
       valor: sup_value,
       date: sup_date
     }
-    
+
     try {
       const response = await axios.put(process.env.API_VNA_USAL, upSaleForm)
       return response.status
     }catch (error) {
       console.log(error)
+    }
+  }
+
+  const topSale = async () =>{
+    try {
+      const response = await axios.get(process.env.API_VNA_TSAL)
+      return response.data
+    } catch (error) {
+      return response.status
+    }
+  }
+
+  const yearSale = async () =>{
+    try {
+      const response = await axios.get(process.env.API_VNA_YSAL)
+      return response.data
+    } catch (error) {
+      return response.status
     }
   }
 
@@ -167,6 +185,8 @@ export default function useApi(){
     getSales,
     postSale,
     upSale,
+    topSale,
+    yearSale,
     verifyUser
   }
 }

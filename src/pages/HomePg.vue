@@ -15,8 +15,7 @@
         padding
         arrows
         height="300px"
-        class="bg-primary text-white shadow-1 rounded-borders"
-      >
+        class="bg-primary text-white shadow-1 rounded-borders">
         <q-carousel-slide name="style" class="column no-wrap flex-center">
           <q-icon name="home" size="56px" />
           <div class="q-mt-md text-center">
@@ -45,7 +44,7 @@
     </div>
     <div class="row q-mt-xl">
       <q-card
-        class="my-card text-white q-ml-xl"
+        class=" home-card my-card text-white q-ml-xl"
         style="background: radial-gradient(circle, #35a2ff 0%, #014a88 100%)">
         <q-card-section>
           <div class="text-h6">Total Clients: {{tClients}}</div>
@@ -53,9 +52,8 @@
           <div class="q-mt-sm"> {{ tpClients }} </div>
         </q-card-section>
       </q-card>
-
       <q-card
-        class="my-card text-white q-ml-md"
+        class=" home-card my-card text-white q-ml-md"
         style="background: radial-gradient(circle, #35a2ff 0%, #014a88 100%)">
         <q-card-section>
           <div class="text-h6">Products Count: {{tProducts}}</div>
@@ -63,31 +61,43 @@
           <div class="q-mt-sm"> {{tpProduct}}</div>
         </q-card-section>
       </q-card>
-    </div>
-    <div class="row q-mt-lg">
       <q-card
-        class="my-card text-white q-ml-xl"
+        class="my-card home-card-right text-white q-ml-md"
         style="background: radial-gradient(circle, #35a2ff 0%, #014a88 100%)">
         <q-card-section>
-          <div class="text-h6">Total Sales:</div>
-          <div class="text-subtitle2">Top Sale:</div>
-        </q-card-section>
-
-        <q-card-section class="q-pt-none">
-          {{ lorem }}
+          <div class="text-h6">Euro € -> Real R$</div>
+          <div class=" currency text-h5"> {{real}} R$</div>
+          <div class="text-subtitle2 q-mt-sm">exchangerate.host official</div>
         </q-card-section>
       </q-card>
 
+    </div>
+    <div class="row q-mt-lg">
       <q-card
-        class="my-card text-white q-ml-md"
+        class=" home-card my-card text-white q-ml-xl"
         style="background: radial-gradient(circle, #35a2ff 0%, #014a88 100%)">
         <q-card-section>
-          <div class="text-h6">Sales Amount:</div>
-          <div class="text-subtitle2"></div>
+          <div class="text-h6">Total Sales: {{tSales_v}}</div>
+          <div class="text-subtitle2">Top Sale:</div>
+          <div class=""> {{tSales}}</div>
         </q-card-section>
-
-        <q-card-section class="q-pt-none">
-          {{ lorem }}
+      </q-card>
+      <q-card
+        class=" home-card my-card text-white q-ml-md"
+        style="background: radial-gradient(circle, #35a2ff 0%, #014a88 100%)">
+        <q-card-section>
+          <div class="text-h6">Sales Amount: {{saleAmount}} €</div>
+          <div class="text-subtitle2"> Year Sales:</div>
+          <div class=""> <span color="green">{{ySale}} €</span></div>
+        </q-card-section>
+      </q-card>
+      <q-card
+        class="my-card home-card-right text-white q-ml-md"
+        style="background: radial-gradient(circle, #35a2ff 0%, #014a88 100%)">
+        <q-card-section>
+          <div class="text-h6">Euro € -> Dollar $</div>
+          <div class=" currency text-h5"> {{dollar}} $</div>
+          <div class="text-subtitle2 q-mt-sm">exchangerate.host official</div>
         </q-card-section>
       </q-card>
     </div>
@@ -97,6 +107,7 @@
 <script>
 import { defineComponent, onMounted, ref } from "vue";
 import useApi from "src/composables/UseApi";
+import extraData from "src/composables/ExternalData";
 import useAuthUser from "src/composables/UseAuthUser";
 import useNotify from "src/composables/UseNotify";
 
@@ -105,17 +116,24 @@ export default defineComponent({
 
     setup(){
       // Get logged user using composable
-      const{user} = useAuthUser()
-      const{getSales, getProducts, getClientList, topCliLocation, topProduct} = useApi()
-      const{notifyError, notifySuccess} = useNotify()
+      const {user} = useAuthUser()
+      const {getCurrency} = extraData()
+      const {getSales, topSale, yearSale, getProducts, getClientList, topCliLocation, topProduct} = useApi()
+      const {notifyError, notifySuccess} = useNotify()
+      const real = ref('')
+      const dollar = ref('')
       const tClients = ref('')
       const tpClients = ref('')
       const tProducts = ref('')
       const tpProduct = ref('')
       const tSales = ref('')
       const tSales_v = ref('')
+      const ySale = ref('')
       const clientList = ref([])
       const productList = ref([])
+      const saleList = ref([])
+      const currencyList = ref([])
+      const saleAmount = ref(0)
 
       const mapClients = async () =>{
         try {
@@ -131,7 +149,6 @@ export default defineComponent({
           console.log(error)
         }
       }
-
       const mapProducts = async () =>{
         try {
           var aux = false
@@ -139,30 +156,56 @@ export default defineComponent({
           tProducts.value = productList.value.length
           tpProduct.value = await topProduct()
 
+
         } catch (error) {
 
         }
       }
-
       const mapSales = async () =>{
         try {
           saleList.value = await getSales()
-
+          tSales.value = await topSale()
+          ySale.value = await yearSale()
+          tSales_v.value = saleList.value.length
+          saleList.value.forEach(sale => {
+            saleAmount.value += sale.valor
+          });
         } catch (error) {
           notifyError("Error in load data!")
         }
       }
+      const mapCurrency = async () =>{
+        try {
+          currencyList.value = await getCurrency()
+          console.log(currencyList.value)
+          real.value = currencyList.value.BRL
+          var aux = currencyList.value.rates.USD.toString()
+          var aux_r = currencyList.value.rates.BRL.toString()
+          dollar.value = aux.substring(0,4)
+          real.value = aux_r.substring(0,4)
+          console.log(real.value)
 
+        } catch (error) {
+          notifyError("Error in load currency data!")
+        }
+      }
       onMounted(() =>{
+        mapCurrency()
         mapClients()
         mapProducts()
+        mapSales()
       })
-
       return{
+        real,
+        dollar,
         tpClients,
         tClients,
         tProducts,
         tpProduct,
+        tSales,
+        tSales_v,
+        saleAmount,
+        ySale,
         user,
         slide: ref('style'),
         homeSlide: '',
