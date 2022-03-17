@@ -137,6 +137,7 @@ export default function useApi(){
       valor: sup_value,
       date: sup_date
     }
+    
     try {
       const response = await axios.put(process.env.API_VNA_USAL, upSaleForm)
       return response.status
