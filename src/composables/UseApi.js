@@ -36,7 +36,7 @@ export default function useApi(){
       date: cliDate
     }
     try {
-      const resp = await axios.post(process.env.API_VNA_UCLI, upCli)
+      const resp = await axios.put(process.env.API_VNA_UCLI, upCli)
       return resp.status
     } catch (error) {
       return resp.status
