@@ -84,7 +84,7 @@ export default function useApi(){
       valor: valueUp
     }
     try {
-      const response = await axios.post(process.env.API_VNA_UPRO, upPro)
+      const response = await axios.put(process.env.API_VNA_UPRO, upPro)
       return response.status
     }catch (error) {
       console.log(error)
@@ -138,7 +138,7 @@ export default function useApi(){
       date: sup_date
     }
     try {
-      const response = await axios.post(process.env.API_VNA_USAL, upSaleForm)
+      const response = await axios.put(process.env.API_VNA_USAL, upSaleForm)
       return response.status
     }catch (error) {
       console.log(error)
