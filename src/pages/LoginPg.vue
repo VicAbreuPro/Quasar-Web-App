@@ -67,9 +67,6 @@ export default({
       }
     })
 
-
-
-
     // Reactive form for login inputs
     const form = ref({
       email: '',
@@ -85,7 +82,6 @@ export default({
         // Call login method in composable passing our login const parameters
         await login(form.value)
 
-
         // Success Notification
         notifySuccess('Loggin Success!')
 
@@ -98,7 +94,6 @@ export default({
     }
 
     //Input type rule
-
 
     return{
       form,
