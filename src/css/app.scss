@@ -2,32 +2,30 @@
 $lowstate-color: rgb(250, 81, 81);
 $highstate-color:rgb(69, 206, 105);
 $currency-color: rgb(120, 216, 17);
-
-.currency{
-  color: $currency-color;
-}
-.lowstate{
-  background-color: $lowstate-color;
+.currency {
+    color: $currency-color;
 }
 
-.normalstate{
-  background-color: #7676fb;
+.lowstate {
+    background-color: $lowstate-color;
 }
 
-.highstate{
-  background-color: $highstate-color;
+.normalstate {
+    background-color: #7676fb;
 }
 
-.home-card{
-  width: 300px;
-  height: 120px;
+.highstate {
+    background-color: $highstate-color;
 }
 
-.home-card-right{
-  position: fixed;
-  right: 50px;
-  width: 200px;
-  height: 120px;
+.home-card {
+    width: 300px;
+    height: 120px;
 }
 
-
+.home-card-right {
+    position: relative;
+    right: 50px;
+    width: 200px;
+    height: 120px;
+}
