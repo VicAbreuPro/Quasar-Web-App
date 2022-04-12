@@ -2,9 +2,9 @@ export default function useApi() {
 
     const axios = require('axios');
 
-    const getClientList = () => {
+    const getClientList = async() => {
         try {
-            const response = axios.get(process.env.API_VNA_GCLI)
+            const response = await axios.get(process.env.API_VNA_GCLI)
             return response.data
         } catch (error) {
             console.log(error)

@@ -95,7 +95,7 @@ export default defineComponent({
     const {addWindow} = popUpWindow()
     const {notifyError, notifySuccess} = useNotify()
     const {getClientList, postClient} = useApi()
-    const clientList = getClientList()
+    const clientList = ref([])
     const aux = ref(false)
 
     // Reactive form for client data inputs
@@ -104,9 +104,10 @@ export default defineComponent({
         cli_location: '',
         cli_date: ''
     })
-    const mapClients = () =>{
+
+    const mapClients = async () =>{
       try {
-        clientList.value = getClientList()
+        clientList.value = await getClientList()
         if(clientList.value != null) notifySuccess("Clients Loaded")
       } catch (error) {
         notifyError("Error in load data!")
@@ -116,6 +117,12 @@ export default defineComponent({
     const addClient = async () =>{
       try {
         await postClient(cliForm.value.cli_name, cliForm.value.cli_location, cliForm.value.cli_date)
+        clientList.value = await getClientList()
+
+        cliForm.value.cli_name = ""
+        cliForm.value.cli_location = ""
+        cliForm.value.cli_date = ""
+        
         notifySuccess("Client Added!")
       } catch (error) {
         console.log(error)
