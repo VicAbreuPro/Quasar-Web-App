@@ -18,6 +18,11 @@ $currency-color: rgb(120, 216, 17);
     background-color: $highstate-color;
 }
 
+.currency {
+    color: black;
+    background-color: $currency-color;
+}
+
 .home-card {
     width: 300px;
     height: 120px;
@@ -27,4 +32,8 @@ $currency-color: rgb(120, 216, 17);
     right: 20px;
     width: 200px;
     height: 120px;
+}
+
+.form {
+    width: 490px;
 }

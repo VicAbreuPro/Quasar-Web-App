@@ -47,8 +47,8 @@ module.exports = configure(function(ctx) {
                 SUPABASE_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVmb25ham5nZXJzc21na3pyZGxmIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NDY2NDkyMjYsImV4cCI6MTk2MjIyNTIyNn0.g5RksdCKTN0giimr4y4L81oGqgNbjepxIx5ifMpsfyY",
                 SUPABASE_URL: "https://efonajngerssmgkzrdlf.supabase.co",
                 API_VNA_VTKN: "https://apivna30.azurewebsites.net/Internal/UserType/",
-                API_VNA_GCLI: "https://apivna30.azurewebsites.net/Client/ClientList",
-                API_VNA_PCLI: "https://apivna30.azurewebsites.net/Client/AddClient",
+                API_VNA_GCLI: "https://apim3.azurewebsites.net/Client/ClientList",
+                API_VNA_PCLI: "https://apim3.azurewebsites.net/Client/NewClient",
                 API_VNA_UCLI: "https://apivna30.azurewebsites.net/Client/UpdateClient",
                 API_VNA_TCLI: "https://apivna30.azurewebsites.net/Client/TopClientLocation",
                 API_VNA_GPRO: "https://apivna30.azurewebsites.net/Product/ProductList",
@@ -99,7 +99,9 @@ module.exports = configure(function(ctx) {
 
         // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-framework
         framework: {
-            config: {},
+            config: {
+                dark: 'auto'
+            },
 
             // iconSet: 'material-icons', // Quasar icon set
             // lang: 'en-US', // Quasar language pack

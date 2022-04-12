@@ -11,15 +11,29 @@ export default function useApi() {
         }
     }
 
-    const postClient = async(nameAux, locationAux, regis_date) => {
-
-        const newCli = {
-            name: nameAux,
-            location: locationAux,
-            date: regis_date
+    const postClient = async(username, name, surname, email, phone, nif, address, zip, city, state, country) => {
+        console.log(username, name, surname, email, phone, nif, address, zip, city, state, country)
+        const cli = {
+            t_id: 0,
+            p_Id: 0,
+            entity_id: 0,
+            territory_Id: 0,
+            client_Id: 0,
+            username: username,
+            first_name: name,
+            surname: surname,
+            email: email,
+            phone: phone,
+            nif: nif,
+            adressline: address,
+            zipcode: zip,
+            city: city,
+            district: state,
+            country: country
         }
+        console.log(cli)
         try {
-            const resp = await axios.post(process.env.API_VNA_PCLI, newCli)
+            const resp = await axios.post(process.env.API_VNA_PCLI, cli)
             console.log(resp.status + "post")
         } catch (error) {
             console.log(error)
