@@ -95,7 +95,7 @@ export default defineComponent({
     const {addWindow} = popUpWindow()
     const {notifyError, notifySuccess} = useNotify()
     const {getClientList, postClient} = useApi()
-    const clientList = ref([])
+    const clientList = getClientList()
     const aux = ref(false)
 
     // Reactive form for client data inputs
@@ -112,6 +112,7 @@ export default defineComponent({
         notifyError("Error in load data!")
       }
     }
+
     const addClient = async () =>{
       try {
         await postClient(cliForm.value.cli_name, cliForm.value.cli_location, cliForm.value.cli_date)
@@ -128,10 +129,12 @@ export default defineComponent({
       if(validation != 0) aux.value = true
       else aux.value = false
     }
+
     // When view is mounted, call methods below
     onMounted(() =>{
       mapClients()
     })
+
     return{
       aux,
       cliForm,
