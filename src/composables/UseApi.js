@@ -14,21 +14,21 @@ export default function useApi() {
     const postClient = async(username, name, surname, email, phone, nif, address, zip, city, state, country) => {
         console.log(username, name, surname, email, phone, nif, address, zip, city, state, country)
         const cli = {
-            t_id: 0,
+            t_Id: 0,
             p_Id: 0,
-            entity_id: 0,
+            entity_Id: 0,
             territory_Id: 0,
             client_Id: 0,
             username: username,
-            first_name: name,
+            name: name,
             surname: surname,
             email: email,
             phone: phone,
             nif: nif,
-            adressline: address,
+            addresline: address,
             zipcode: zip,
             city: city,
-            district: state,
+            state: state,
             country: country
         }
         console.log(cli)
