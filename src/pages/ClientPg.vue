@@ -104,9 +104,9 @@ export default defineComponent({
         cli_location: '',
         cli_date: ''
     })
-    const mapClients = async () =>{
+    const mapClients = () =>{
       try {
-        clientList.value = await getClientList()
+        clientList.value = getClientList()
         if(clientList.value != null) notifySuccess("Clients Loaded")
       } catch (error) {
         notifyError("Error in load data!")
