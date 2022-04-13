@@ -2,38 +2,30 @@ export default function useApi() {
 
     const axios = require('axios');
 
-    const getClientList = async() => {
+    const getClientList = async(validation, type, value) => {
+        console.log(validation, type, value)
         try {
-            const response = await axios.get(process.env.API_VNA_GCLI)
-            return response.data
+            if (validation == 0 && type != 'default' && value != 'default') {
+                const response = await axios.get(process.env.API_VNA_GCBC, {
+                    params: {
+                        type,
+                        value
+                    }
+                })
+                return response.data
+            } else {
+                const response = await axios.get(process.env.API_VNA_GCLI)
+                return response.data
+            }
         } catch (error) {
             console.log(error)
         }
     }
 
-    const postClient = async(username, name, surname, email, phone, nif, address, zip, city, state, country) => {
-        console.log(username, name, surname, email, phone, nif, address, zip, city, state, country)
-        const cli = {
-            t_Id: 0,
-            p_Id: 0,
-            entity_Id: 0,
-            territory_Id: 0,
-            client_Id: 0,
-            username: username,
-            name: name,
-            surname: surname,
-            email: email,
-            phone: phone,
-            nif: nif,
-            addresline: address,
-            zipcode: zip,
-            city: city,
-            state: state,
-            country: country
-        }
-        console.log(cli)
+    const postClient = async(cliform) => {
+
         try {
-            const resp = await axios.post(process.env.API_VNA_PCLI, cli)
+            const resp = await axios.post(process.env.API_VNA_PCLI, cliform)
             console.log(resp.status + "post")
         } catch (error) {
             console.log(error)
@@ -56,33 +48,18 @@ export default function useApi() {
         }
     }
 
-    const topCliLocation = async() => {
+    const getServices = async() => {
         try {
-            const response = await axios.get(process.env.API_VNA_TCLI)
-            return response.data
-        } catch (error) {
-            return response.status
-        }
-    }
-
-    const getProducts = async() => {
-        try {
-            const response = await axios.get(process.env.API_VNA_GPRO)
+            const response = await axios.get(process.env.API_VNA_GSER)
             return response.data
         } catch (error) {
             console.log(error)
         }
     }
 
-    const postProduct = async(serialAux, modelAux, valueAux) => {
-
-        const newPro = {
-            serial: serialAux,
-            model: modelAux,
-            valor: valueAux
-        }
+    const postService = async(s_form) => {
         try {
-            const response = await axios.post(process.env.API_VNA_PPRO, newPro)
+            const response = await axios.post(process.env.API_VNA_PSER, s_form)
             return response.status
         } catch (error) {
             console.log(error)
@@ -104,36 +81,19 @@ export default function useApi() {
         }
     }
 
-    const topProduct = async() => {
-        try {
-            const response = await axios.get(process.env.API_VNA_TPRO)
-            return response.data
-        } catch (error) {
-            return response.status
-        }
-    }
 
-    const getSales = async() => {
+    const getStaff = async() => {
         try {
-            const response = await axios.get(process.env.API_VNA_GSAL)
+            const response = await axios.get(process.env.API_VNA_GSTA)
             return response.data
         } catch (error) {
             console.log(error)
         }
     }
 
-    const postSale = async(s_serial, s_model, s_cli, s_value, s_date) => {
-
-        const newSale = {
-            serial: s_serial,
-            model: s_model,
-            client_id: s_cli,
-            valor: s_value,
-            date: s_date
-        }
-
+    const postStaff = async(st_form) => {
         try {
-            const response = await axios.post(process.env.API_VNA_PSAL, newSale)
+            const response = await axios.post(process.env.API_VNA_PSTF, st_form)
             return response.status
         } catch (error) {
             console.log(error)
@@ -159,21 +119,21 @@ export default function useApi() {
         }
     }
 
-    const topSale = async() => {
+    const getSuppliers = async() => {
         try {
-            const response = await axios.get(process.env.API_VNA_TSAL)
+            const response = await axios.get(process.env.API_VNA_GSUP)
             return response.data
         } catch (error) {
-            return response.status
+            console.log(error)
         }
     }
 
-    const yearSale = async() => {
+    const postSupplier = async(sup_form) => {
         try {
-            const response = await axios.get(process.env.API_VNA_YSAL)
-            return response.data
-        } catch (error) {
+            const response = await axios.post(process.env.API_VNA_PSUP, sup_form)
             return response.status
+        } catch (error) {
+            console.log(error)
         }
     }
 
@@ -190,16 +150,14 @@ export default function useApi() {
         getClientList,
         postClient,
         upClient,
-        topCliLocation,
-        getProducts,
-        postProduct,
+        getServices,
+        postService,
         upProduct,
-        topProduct,
-        getSales,
-        postSale,
+        getStaff,
+        postStaff,
         upSale,
-        topSale,
-        yearSale,
+        getSuppliers,
+        postSupplier,
         verifyUser
     }
 }

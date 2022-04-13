@@ -19,7 +19,7 @@ $currency-color: rgb(120, 216, 17);
 }
 
 .currency {
-    color: black;
+    color: #000000;
     background-color: $currency-color;
 }
 
@@ -29,9 +29,14 @@ $currency-color: rgb(120, 216, 17);
 }
 
 .home-card-right {
-    right: 20px;
+    margin-left: auto;
+    margin-right: 6vh;
     width: 200px;
     height: 120px;
+}
+
+.s_form {
+    background-color: #262927;
 }
 
 .form {

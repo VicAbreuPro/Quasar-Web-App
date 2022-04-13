@@ -35,7 +35,7 @@
 
     <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
       <q-list>
-        <q-item-label header> Essential Links </q-item-label>
+        <q-item-label header> VNA Manager Menu </q-item-label>
 
         <EssentialLink
           v-for="link in essentialLinks"
@@ -58,31 +58,31 @@ const linksList = [
   {
     title: "Home Page",
     icon: "house",
-    link: "HomePg",
+    link: "Home",
   },
   {
     title: "Clients",
     caption: "Client Management",
-    icon: "person",
-    link: "ClientPg",
+    icon: "people",
+    link: "Client",
   },
   {
-    title: "Products",
-    caption: "Product Management",
-    icon: "star",
-    link: "ProductPg",
+    title: "Service",
+    caption: "Service Management",
+    icon: "work_outline",
+    link: "Service",
   },
   {
-    title: "Sales",
-    caption: "Sales Management",
-    icon: "money",
-    link: "SalesPg",
+    title: "Staff",
+    caption: "Staff Management",
+    icon: "badge",
+    link: "Staff",
   },
   {
-    title: "Admin",
-    caption: "@quasarframework",
-    icon: "key",
-    link: "https://twitter.quasar.dev",
+    title: "Supplier",
+    caption: "Supplier Management",
+    icon: "local_shipping",
+    link: "Supplier",
   }
 ];
 
